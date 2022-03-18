@@ -23,6 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(serveStatic(path.join(__dirname, '/dist')))
 
+
+app.get('/',(req,res) => {
+    res.send('Hello World!')
+})
+
 app.post('/signup', (req, res) => {
     const newUser = new User({
         email: req.body.email,
