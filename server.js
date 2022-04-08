@@ -14,18 +14,15 @@ const path = require('path')
 mongoose.connect('mongodb+srv://admin:root@cluster0.elh7n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
 const app = express();
-app.use(history({
-    // OPTIONAL: Includes more verbose logging
-    verbose: true
-}))
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(serveStatic(path.join(__dirname, '/dist')))
+// app.use(serveStatic(path.join(__dirname, '/dist')))
 
 
 app.get('/',(req,res) => {
-    res.send('Hello World!')
+    res.json({msg : "Hello World"})
 })
 
 app.post('/signup', (req, res) => {
@@ -140,7 +137,7 @@ app.get('/event', (req, res) => {
 
 })
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 
 app.listen(port, (err) => {
     if (err) return console.log(err);
